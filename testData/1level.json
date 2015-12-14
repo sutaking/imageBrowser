@@ -1,0 +1,25 @@
+[{
+    "isFile":true,
+    "path":"localData/1level/",
+    "created":"2015-08-14T08:31:10.000Z",
+    "modified":"2015-08-14T08:31:10.000Z",
+    "parent":{
+        "isFile":false,
+        "path":"localData",
+        "created":"1970-01-01T00:00:52.000Z",
+        "modified":"1970-01-01T00:00:52.000Z",
+        "parent":null,
+        "fullPath":"localData",
+        "readOnly":false,
+        "name":"",
+        "length":7,
+        "isDirectory":true
+    },
+    "fullPath":"localData/1level/device_info.jpg",
+    "readOnly":false,
+    "name":"device_info.jpg",
+    "fileSize":36,
+    "isDirectory":false,
+    "uri":"testData/large/20.jpg"
+}
+]

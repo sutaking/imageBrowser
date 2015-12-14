@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Image Viewer Based on CAPH3-angular</title>
+        <!-- dependency:css -->
+        
+		<link href="build/caph.css" rel="stylesheet" type="text/stylesheet">
+        <!-- build:css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/content.css">
+        <link rel="stylesheet" href="styles/slider.css">
+        <!-- dependency  -->
+        <script type="text/javascript" src="build/jquery.min.js"></script>
+        <script type="text/javascript" src="build/angular.min.js"></script>
+        <script type="text/javascript" src="build/angular-animate.min.js"></script>
+        <script type="text/javascript" src="build/angular-route.min.js"></script>
+        <script type="text/javascript" src="build/caph-angular.min.js"></script>
+        
+        <!-- build -->
+        <script type="text/javascript" src="scripts/app.js"></script>
+        <script type="text/javascript" src="scripts/browser/content.js"></script>
+        <script type="text/javascript" src="scripts/browser/content_directive.js"></script>
+        <script type="text/javascript" src="scripts/slider/slider.js"></script>
+        <script type="text/javascript" src="scripts/slider/keybroad.js"></script>
+        <script type="text/javascript" src="scripts/dropbox/dropbox.js"></script>
+        <script type="text/javascript" src="scripts/util/util.js"></script>
+        <script type="text/javascript" src="scripts/util/filter.js"></script>
+        
+
+    </head>
+    <body ng-app="caph3-imageViewer">
+    
+        <!-- application content -->
+        <div ng-view class="container"></div>
+
+    </body>
+</html>

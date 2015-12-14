@@ -1,0 +1,26 @@
+<div class="slider-bg" ng-mousemove="player.mouseMove($event)" ng-click="player.mouseClick()">
+    <div class="slider-toolbar"> 
+        <div class="image-viewer-info-menubar">
+            <div class="reperence-area">
+                <div class="image-title" ng-bind="(player.currentPhoto.name| formatFile:0)|textCut: 20"></div>
+                <div class="image-date" ng-bind="player.currentPhoto.created|formatDate"></div>
+                <div class="image-index" ng-bind="(player.listIndex+1)+'/'+player.listLength"></div>
+            </div>
+            <div class="imageviewer-custom-icon">
+                <div focusable class="btn btn-previous" on-selected="player.btnEvent('previousPush', 'prev')"></div> 
+                <div focusable ng-show="player.isPlay" class="btn btn-play"  on-selected="player.btnEvent('playTogglePush', 'play')"></div>
+                <div focusable ng-show="!player.isPlay" class="btn btn-pause"  on-selected="player.btnEvent('playTogglePush', 'pause')"></div>
+                <div focusable class="btn btn-next" on-selected="player.btnEvent('nextPush', 'next')"></div>
+            </div>
+        </div>
+        <div class="photo-thumbnail-area">
+            <caph-list style="position: absolute;" container-class="photo-list-container" wrapper-class="photo-list-scroll-wrapper" items="item in player.picList" loop="true">
+                <div focusable id="photo-item-{{$index}}" data-index="{{$index}}" class="photo-item" on-focused="player.onFocused(item, $index)" on-blurred="player.onBlurred($index)" on-selected="player.onSelected(item, $index)">
+                    <div class="photo-border"></div>
+                    <div class="photo-item-bg" ng-style="{'background':'url(\''+(player.thumbnailList[item.uri]||urlDefault)+'\') center center', 'background-size':'cover'}"></div>
+                </div>
+            </caph-list>
+        </div>
+    </div>
+    <div class="photo" style="background-image: url('{{player.currentPhoto.uri}}'); background-repeat:no-repeat; background-position: center center;"></div> 
+</div>

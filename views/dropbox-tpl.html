@@ -1,0 +1,13 @@
+<li>
+<div class="sample-button" focusable on-selected="openContextMenu1()">
+    <div class="button-text font-list-item-title" ng-bind="'Sort by : '+(selectedItemName1||'Title')">
+        <div ng-hide="dropdownTip === true" class="dropdown-down"></div>
+        <div ng-show="dropdownTip === true" class="dropdown-top"></div>
+    </div>
+</div>
+<caph-context-menu focusable-depth="30" position="contextMenu1.position" show="contextMenu1.show" menu-option="contextMenu1.menuOption" items="contextMenu1.items" on-select-item="selectMenu1($itemId, $event)" on-focus-item="focusItem($event, $originalEvent)" on-blur-item="blurItem($event, $originalEvent)" ng-cloak>
+    <caph-context-menu-item-template><span style="color:#ffffff; background-color:{{color}}; font: 21px 'SamsungSmart_Latin Light';" ng-bind="content"></span>
+        <div ng-class="{'item-selected': showCheck === true}" style="float:right; margin: -40px 20px 0 200px;">
+    </caph-context-menu-item-template>
+</caph-context-menu>
+</li>

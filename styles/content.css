@@ -1,0 +1,104 @@
+
+.file-grid-area {
+    position: absolute;
+    top: 120px;
+}
+
+.list-container {
+    position: absolute;
+    width: 1879px;
+    height: 604px;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.list-scroll-wrapper {
+    left: 41px;
+}
+
+.item {
+    position: relative;
+    width: 238px;
+    height: 298px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    /*border-style: inset; 
+    border: 7px solid rgba(255, 255, 255, 0);*/
+}
+
+.item.focused .list-border{
+    position: absolute;
+    width: 224px;
+    height: 284px;
+    border: 7px solid rgba(255, 255, 255, 1);
+    z-index: 2;
+}
+/*
+.list-border {
+    position: absolute;
+    width: 224px;
+    height: 284px;
+    border: 7px solid rgba(255, 255, 255, 1);
+    z-index: 2;
+}*/
+
+.item-bg {
+    width:238px; 
+    height: 298px; 
+}
+.blur-container {
+    position: absolute;
+    width:230px; 
+    height: 60px;
+}
+
+/*.blur {
+    filter: blur(4px); 
+    -webkit-filter: blur(4px);
+}*/
+.go-mask{
+    position: absolute;
+    left: 4px;
+    top: 236px;
+    width: 230px;
+    height: 55px;
+    z-index: 1;
+}
+.item-context-area{
+    position: relative;
+    width: 238px;
+    height: 55px;
+    top: 243px;
+    /*z-index: 2;*/
+    text-align:center;
+    background-color: rgba(0, 95, 163, .4);
+}
+.item-context-text {
+    position: absolute;
+    left:10px;
+    width: 218px;
+    height: 60px;
+    line-height:60px; 
+    overflow:hidden;
+}
+.item-floder-context-text {
+    position: absolute;
+    top: 188px;
+    left:18px;
+    width: 202px;
+    height: 60px;
+    line-height:60px; 
+    overflow:hidden;
+}
+.item-floder-bg{
+    background: url("../resource/images/mc_folder.png") 50% 58px no-repeat rgba(0, 104, 178, .3);
+    width:238px; 
+    height: 298px;
+    text-align:center;
+}
+.item-upper-floder-bg{
+    background: url("../resource/images/mc_upperfolder.png") 50% 58px no-repeat rgba(0, 104, 178, .3);
+    width:238px; 
+    height: 298px;
+    text-align:center;
+}
