@@ -1,6 +1,6 @@
 {
   "name": "imageplayer-angualr-webpack-sample",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "directories": {
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/sutaking/imageplayer-angualr-webpack-sample.git"
   },
-  "author": "",
+  "author": "sutaking",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sutaking/imageplayer-angualr-webpack-sample/issues"
