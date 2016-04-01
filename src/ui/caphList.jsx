@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Box from './caphBox';
-import Title from '../../sample/title.jsx';
 
 var listArea = React.createClass({
 
@@ -29,6 +28,7 @@ var listArea = React.createClass({
 
         for(var i=0; i<this.props.num; ++i) {
             items.push(< Box 
+                key={i}
                 focusable = {setInit(i)}
                 className = "location1" 
                 style={getUrl(i+4*this.props.index)}

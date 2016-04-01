@@ -38,9 +38,9 @@ var listDemo = React.createClass({
         return (
             <div className={this.state.listClass} style={this.state.newListStyle}>
                 {listArray.map(function(data, i) {
-                    return <div>
+                    return <div key={i}>
                         <div className={'list-title'}>{data.title+i}</div>
-                        <CaphList 
+                        <CaphList
                         index={i}
                         onBoxFocus={_handleBoxFocus} 
                         num={data.num} 
