@@ -22,16 +22,31 @@ var listDemo = React.createClass({
         });
     },
     render() {
+        var _handleBoxFocus = this.handleBoxFocus;
+
+        var listArray = [
+            {num:200, title:'Amazon '},
+            {num:10, title:'UA '},
+            {num:10, title:'TaoBao '},
+            {num:10, title:'Samsung '},
+            {num:10, title:'Apple '},
+            {num:10, title:'Bing '},
+            {num:10, title:'Google '},
+            {num:10, title:'Mi '},
+            {num:10, title:'TOYOTA '}];
+
         return (
             <div className={this.state.listClass} style={this.state.newListStyle}>
-                <CaphList key={'11'} onBoxFocus={this.handleBoxFocus} title={'Group1'} num={200} index={0} 
-                />
-                <CaphList key={'12'} onBoxFocus={this.handleBoxFocus} title={'Group2'} num={10} index={1}
-                />
-                <CaphList key={'13'} onBoxFocus={this.handleBoxFocus} title={'Group3'} num={10} index={2}
-                />
-                <CaphList key={'14'} onBoxFocus={this.handleBoxFocus} title={'Group4'} num={10} index={3}
-                />
+                {listArray.map(function(data, i) {
+                    return <div>
+                        <div className={'list-title'}>{data.title+i}</div>
+                        <CaphList 
+                        index={i}
+                        onBoxFocus={_handleBoxFocus} 
+                        num={data.num} 
+                        />
+                    </div>;
+                })}
             </div>
         );
     }

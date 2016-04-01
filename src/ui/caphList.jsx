@@ -57,7 +57,6 @@ var listArea = React.createClass({
         };
 
         return (<div>
-            < Title str={this.props.title} styleClass={'list-title'}/>   
             <div className="list-area" 
             style={Object.assign({}, this.state.moveListStyle, calcWidth(this.props.num))} >                     
             {this.setItems()}
