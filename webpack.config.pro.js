@@ -13,7 +13,7 @@ module.exports = {
     publicPath: '/'
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js','.jsx']
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),

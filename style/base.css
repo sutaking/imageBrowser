@@ -2,6 +2,7 @@ body {
   margin: 0;
   overflow: hidden;
 }
+
 .wrapper {
   position: relative;  
   width: 1920px;
@@ -29,85 +30,31 @@ body {
   top: 130px;
 }
 
-.list-area {
-  position: relative;
-  left: 40px;
-  height: 314px;
-  margin-bottom: 0px;
-}
-
 .list-title {
   color: white;
   font-size: 30px;
   margin: 0 0 1px 112px;
 }
 
-.depth {
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  border: 1px solid black;
-  background: white;
-}
-
-.group {
-  position: absolute;
-  width: 510px;
-  height: 110px;
-  border: 1px solid black;
-}
 
 .box {
-  /*position: absolute;*/
-  width: 474px;
+  position: relative;
+  float: left;
+  top: 10px;
+  margin-right: 5px;
+  width: 265px;
   height: 265px;
   line-height: 265px;
-  margin: 0px 24px 0px 0px;
-  border: 6px solid #363C45;
-  text-align: center;
-  /*background: rgb(217,166,210);*/
-  box-sizing: border-box;
-  /*cursor: pointer;*/
   color: #eee;
   font-size: 40px;
+  text-align: center;
+
+  border: 6px solid #363C45;  
+  box-sizing: border-box;
 }
 
 .focused {
   border: 6px solid #EEE;
 }
 
-.disabled {
-  opacity: 0.25;
-}
 
-.dim {
-  opacity: 0.5;
-  background: lightgray;
-}
-
-.hide {
-  display: none;
-}
-
-.location1 {
-  position: relative;
-  float: left;
-  left: 10px;
-  top: 10px;
-  margin-right: 5px;
-}
-
-.location2 {
-  position: relative;
-  left: 120px;
-  top: 10px;
-}
-
-.example-enter {
-  opacity: 0.01;
-  transition: opacity .5s ease-in;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-}

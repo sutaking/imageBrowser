@@ -20,7 +20,7 @@ module.exports = {
     publicPath: '/dist/'
   },
   resolve: {
-    extensions: ['', '.js']
+    extensions: ['', '.js','.jsx']
   },
   devtool: 'eval-source-map',
   plugins: [
