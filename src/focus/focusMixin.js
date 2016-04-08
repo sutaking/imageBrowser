@@ -95,7 +95,7 @@ function getNextFocusItem(direction) {
 
 var FocusMixin = {
     getDefaultProps: function() {
-        return { name: "Tom" };
+        return {};
     },
     getInitialState: function() {
         return {
@@ -115,6 +115,7 @@ var FocusMixin = {
     componentDidMount: function() {
         currentFocusComponment = this.props.focusable.initialFocus ? this : currentFocusComponment;
         //$(ReactDOM.findDOMNode(this)).append("surprise!");
+        //console.log($(ReactDOM.findDOMNode(this)));
         document.onkeydown = function(event) {
             var keyCode = event.keyCode || event.which || event.charCode;
             if (!(keyCode > 36 && keyCode < 41)) {
