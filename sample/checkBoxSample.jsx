@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CaphButton from '../src/ui/caphButton';
+import CaphCheckBox from '../src/ui/caphCheckBox';
 
-var ButtonDemo = React.createClass({
+var CheckBoxDemo = React.createClass({
 
     getInitialState() {
         return {};
@@ -14,4 +14,4 @@ var ButtonDemo = React.createClass({
 
 });
 
-module.exports = ButtonDemo;
+module.exports = CheckBoxDemo;

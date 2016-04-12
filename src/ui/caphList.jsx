@@ -5,6 +5,16 @@ var itemWidth, limit;
 
 const caphList = React.createClass({
 
+    propTypes: {
+
+        direction: React.PropTypes.string,
+
+        onBoxFocus: React.PropTypes.func,
+
+        containerStyle: React.PropTypes.object
+
+    },
+
     getInitialState() {
         return {};
     },

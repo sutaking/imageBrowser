@@ -1,8 +1,8 @@
 import React from 'react';
 
-import CaphButton from '../src/ui/caphButton';
+import CaphContextMenu from '../src/ui/caphContextMenu';
 
-var ButtonDemo = React.createClass({
+var ContextMenuDemo = React.createClass({
 
     getInitialState() {
         return {};
@@ -14,4 +14,4 @@ var ButtonDemo = React.createClass({
 
 });
 
-module.exports = ButtonDemo;
+module.exports = ContextMenuDemo;

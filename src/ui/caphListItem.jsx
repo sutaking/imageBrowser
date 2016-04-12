@@ -6,6 +6,19 @@ import FocusMixin from '../focus/focusMixin';
 
 const CaphListItem = React.createClass({
     mixins: [FocusMixin],
+
+    propTypes: {
+
+        focusable: React.PropTypes.object,
+
+        index: React.PropTypes.number,
+
+        onBoxFocus: React.PropTypes.func,
+
+        listAreaIndex: React.PropTypes.number
+
+    },
+
     getInitialState: function() {
         return {};
     },
