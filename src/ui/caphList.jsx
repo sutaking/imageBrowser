@@ -91,7 +91,12 @@ const caphList = React.createClass({
         this._handleScrollState(distance);
         
     },
-
+    componentWillMount: function() {
+        //console.log(ReactDOM.findDOMNode(this));
+        //componments.push(this);
+        //this.setState({ready: true});
+    },
+    
     _handleScrollState(pos) {
         //if(!pos){return}
         //console.log('_handleScrollState:'+pos);
@@ -105,11 +110,14 @@ const caphList = React.createClass({
     },
 
     render() {
+        const props = this.props;
 
         const listChildren = React.Children.map(this.props.children, (currentChild)=>{
 
+            //console.log(currentChild);
             var positionStyle = {
-                //position: 'relative',
+                width:265,
+                height: 265,
                 position: 'absolute',
                 transform: 'translate3d('+ (currentChild.props.index*270) +'px,0,0)',
             }
@@ -119,8 +127,10 @@ const caphList = React.createClass({
                     style:Object.assign({}, currentChild.props.background, positionStyle) });
         });
 
+        //console.log(this.props.containerStyle);
+
         return (<div
-            style={Object.assign({}, this.state.moveListStyle, this.props.containerStyle)}>
+            style={Object.assign({}, this.state.moveListStyle, props.containerStyle)}>
             {listChildren}
             </div>
         );
