@@ -11,7 +11,8 @@ const getStyles = () => {
             position: 'relative',
             left: 30,
             height: 314,
-            width: 200*(265+5),
+            //width: 200*(265+5),
+            width:1920,
             marginBottom: 50
         }
     };
@@ -61,7 +62,7 @@ var listDemo = React.createClass({
                 key={i}
                 focusable = {setInit(i)}
                 className={'box'}
-                style={getItemStyle(i+4*_index)}
+                background={getItemStyle(i+4*_index)}
                 index={i}
                 onBoxFocus={__handleBoxFocus}
 
@@ -75,7 +76,7 @@ var listDemo = React.createClass({
     render() {
 
         var listArray = [
-            {num:30, title:'Amazon '},
+            {num:200, title:'Amazon '},
             /*{num:200, title:'UA '},
             {num:18, title:'TaoBao '},
             {num:10, title:'Samsung '},
