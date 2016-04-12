@@ -51,7 +51,6 @@ var listDemo = React.createClass({
             return {
                 background: 'url('+require('./img/'+index%15+'.jpg')+') 100% 100% no-repeat', 
                 backgroundSize:'100% 100%'
-
             }
         };
         var __handleBoxFocus = _handleBoxFocus;//getItemStyle(i+4*_index) 
@@ -76,9 +75,9 @@ var listDemo = React.createClass({
     render() {
 
         var listArray = [
-            {num:15, title:'Amazon '},
-            {num:200, title:'UA '},
-            /*{num:18, title:'TaoBao '},
+            {num:30, title:'Amazon '},
+            /*{num:200, title:'UA '},
+            {num:18, title:'TaoBao '},
             {num:10, title:'Samsung '},
             {num:10, title:'Apple '},
             {num:10, title:'Bing '},
