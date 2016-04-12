@@ -38,17 +38,14 @@ body {
 
 
 .box {
-  float: left;
   top: 10px;
-  margin-right: 5px;
-  width: 265px;
-  height: 265px;
+  
   line-height: 265px;
   color: #eee;
   font-size: 40px;
   text-align: center;
 
-  border: 6px solid #363C45;  
+  border: 6px solid #363C45;
   box-sizing: border-box;
 }
 

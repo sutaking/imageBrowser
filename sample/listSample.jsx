@@ -13,7 +13,8 @@ const getStyles = () => {
             height: 314,
             //width: 200*(265+5),
             width:1920,
-            marginBottom: 50
+            marginBottom: 50,
+            //background:'red'
         }
     };
 
@@ -76,7 +77,7 @@ var listDemo = React.createClass({
     render() {
 
         var listArray = [
-            {num:200, title:'Amazon '},
+            //{num:10, title:'Amazon '},
             /*{num:200, title:'UA '},
             {num:18, title:'TaoBao '},
             {num:10, title:'Samsung '},
@@ -84,7 +85,7 @@ var listDemo = React.createClass({
             {num:10, title:'Bing '},
             {num:10, title:'Google '},
             {num:10, title:'Mi '},*/
-            {num:15, title:'TOYOTA '}];//, direction:'vertical'
+            {num:150, title:'TOYOTA '}];//, direction:'vertical'
 
         var _handleBoxFocus = this.handleBoxFocus;
         var _setItems = this.setItems;
