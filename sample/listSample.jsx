@@ -9,9 +9,9 @@ const getStyles = () => {
     const styles = {
         listArea: {
             position: 'relative',
+            top: 10,
             left: 30,
-            height: 314,
-            //width: 200*(265+5),
+            height: 600,
             width:1920,
             marginBottom: 50,
             //background:'red'
@@ -39,7 +39,7 @@ var listDemo = React.createClass({
         });
     },
 
-    setItems(_index, _num, _handleBoxFocus) {
+    setItems(_index, _num) {
         var items = [];
         var currentIndex = _index;
 
@@ -53,29 +53,20 @@ var listDemo = React.createClass({
             return {
                 color: '#eee',
                 fontSize: 60,
-                lineHeight: '265px',
+                lineHeight: '165px',
                 textAlign: 'center',
                 background: 'url('+require('./img/'+index%15+'.jpg')+') 100% 100% no-repeat', 
                 backgroundSize:'100% 100%'
             }
         };
 
-        var getItemViewSize = {
-            top: 10,
-            width:565,
-            height: 365,
-            padding: 5
-        };
-
         for(var i=0; i<_num; ++i) {
             items.push(< CaphListItem 
                 key={i}
                 focusable = {setInit(i)}
-                itemViewSize = {getItemViewSize}
-                itemStyle={getItemStyle(i+4*_index)}
-                onBoxFocus={_handleBoxFocus}
-                //for listarea scroll
-                listAreaIndex={_index}/>);
+                style={getItemStyle(i+4*_index)}/>);
+                //onBoxFocus={_handleBoxFocus}
+                //listAreaIndex={_index}
         }
 
         return items;
@@ -92,9 +83,8 @@ var listDemo = React.createClass({
             {num:10, title:'Bing '},
             {num:10, title:'Google '},
             {num:10, title:'Mi '},*/
-            {num:20, title:'TOYOTA '}];//, direction:'vertical'
-
-        var _handleBoxFocus = this.handleBoxFocus;
+            {num:20, title:'TOYOTA '}];
+        
         var _setItems = this.setItems;
 
         const styles = getStyles();
@@ -106,10 +96,14 @@ var listDemo = React.createClass({
                         <div className={'list-title'}>{data.title+i}</div>
 
                         <CaphList 
-                        onBoxFocus={_handleBoxFocus} 
-                        containerStyle={styles.listArea}
-                        direction={data.direction}>
-                            {_setItems(i, data.num, _handleBoxFocus)}
+                            itemHeigh={200}
+                            aspectRatio={1}
+                            padding={10}
+                            direction={'h'}
+                            cols={2}
+                            style={styles.listArea}
+                        >
+                            {_setItems(i, data.num)}
                         </CaphList>
 
                     </div>;

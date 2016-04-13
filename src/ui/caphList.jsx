@@ -7,11 +7,40 @@ const caphList = React.createClass({
 
     propTypes: {
 
+        /**
+         * Direction of layout for columns.
+         */
         direction: React.PropTypes.string,
 
-        onBoxFocus: React.PropTypes.func,
+        /**
+         * Override the inline-styles of the root element.
+         */
+        style: React.PropTypes.object,
 
-        containerStyle: React.PropTypes.object
+        /**
+         * Number of px for one cell height.
+         */
+        itemHeigh: React.PropTypes.number,
+
+        /**
+         * Ratio of cell height.
+         */
+        aspectRatio: React.PropTypes.number,
+
+        /**
+         * Number of px for the padding/spacing between items.
+         */
+        padding: React.PropTypes.number,
+
+        /**
+         * Number of columns.
+         */
+        cols: React.PropTypes.number,
+
+        /**
+         * event func for focus.
+         */
+        //onBoxFocus: React.PropTypes.func
 
     },
 
@@ -34,8 +63,7 @@ const caphList = React.createClass({
         }
 
         if(index === 1) {
-
-            itemWidth = item.getBoundingClientRect().left-listAreaOffset;//del 30 val
+            itemWidth = item.getBoundingClientRect().left-listAreaOffset;
             limit = Math.floor((listAreaWidth-listAreaOffset)/item.offsetWidth);
         };
 
@@ -109,37 +137,82 @@ const caphList = React.createClass({
         });
     },
 
+    getItemWidth(height, ratio) {
+
+        switch(ratio) {
+            case 0:
+                return height;
+            case 1:
+                return height/3*4;
+            case 2:
+                return height/4*3;
+            case 3:
+                return height/9*16;
+            case 4:
+                return height/16*9;
+            default:
+                return height;
+        }
+    },
+
+    getPositionItem(index, width) {
+        const props = this.props;
+        const itemViewWidth = width + props.padding;
+        const itemViewHeight = props.itemHeigh + props.padding;
+
+        var getTopIndex = function(_index) {
+            if(props.direction === 'V' || props.direction === 'v') {
+                return Math.floor(_index/props.cols);
+            }
+            //console.log(_index+' top:'+_index%props.cols);
+            return _index%props.cols;
+        };
+
+        var getLeftIndex = function(_index) {
+            //console.log(_index+' left:'+Math.floor(_index/props.cols));
+            if(props.direction === 'V' || props.direction === 'v') {
+                return _index%props.cols;
+            }
+            return Math.floor(_index/props.cols);
+        };
+
+        var itemTop = getTopIndex(index)*itemViewHeight;
+        var itemLeft = getLeftIndex(index)*itemViewWidth;
+
+        //console.log('index:'+index+', itemTop:'+itemTop+', itemLeft:'+itemLeft);
+        return {itemLeft, itemTop}
+    },
+
     render() {
         const props = this.props;
 
         const listChildren = React.Children.map(this.props.children, (currentChild, index)=>{
+            //console.log(props.itemHeigh);
 
-            //console.log(currentChild.props.itemViewSize);
+            const itemWidth = this.getItemWidth(props.itemHeigh, props.aspectRatio);
+            const itemPosition = this.getPositionItem(index, itemWidth);
 
-            const _index = index;
-            const itemViewSize = currentChild.props.itemViewSize;
-            
             var positionStyle = {
-                width: itemViewSize.width,
-                height: itemViewSize.height,
+                width: itemWidth,
+                height: props.itemHeigh,
                 position: 'absolute',
-                transform: 'translate3d('+ (_index*(itemViewSize.width+itemViewSize.padding)) 
-                            +'px,'
-                            + itemViewSize.top +'px,0)',
+                transform: 'translate3d('
+                            + itemPosition.itemLeft +'px,'
+                            + itemPosition.itemTop +'px,0)',
             }
             
             return React.cloneElement(currentChild, 
                 {   scrollList: this.moveList,
                     className: 'list-items',
-                    index: _index,
-                    style:Object.assign({}, currentChild.props.itemStyle, positionStyle) 
+                    index: index,
+                    style:Object.assign({}, currentChild.props.style, positionStyle) 
                 });
         });
 
         //console.log(listChildren.length);
 
         return (<div
-            style={Object.assign({}, this.state.moveListStyle, props.containerStyle)}>
+            style={Object.assign({}, this.state.moveListStyle, props.style)}>
             {listChildren}
             </div>
         );
