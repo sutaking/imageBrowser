@@ -30,20 +30,18 @@ const CaphListItem = React.createClass({
     focus: function(keyCode) {
         this.setState({
             classNames: this.props.className + ' focused'
-            //classNames: 'box focused'
         });
         
         //var currentItem = ReactDOM.findDOMNode(this);
         //console.log(currentItem.getBoundingClientRect().right);
         
         this.props.scrollList(this.props.index, ReactDOM.findDOMNode(this), keyCode);
-        this.props.onBoxFocus(this.props.listAreaIndex);
+        //this.props.onBoxFocus(this.props.listAreaIndex);
     },
 
     blur: function(keyCode) {
         this.setState({
             classNames: this.props.className
-            //classNames: 'box'
         });
     },
     render: function() {
@@ -54,10 +52,10 @@ const CaphListItem = React.createClass({
         //style={Object.assign({},props.style, props.background)}
 
         return <div className = {this.state.classNames}
-        focusable = {{ initialFocus: props.focusable}}
-        style={props.style} >
-        {this.props.index}
-        </div>;
+                focusable = {{ initialFocus: props.focusable}}
+                style={props.style}>
+                {this.props.index}
+            </div>;
     }
 });
 
