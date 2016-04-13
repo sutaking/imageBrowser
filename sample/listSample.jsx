@@ -51,22 +51,29 @@ var listDemo = React.createClass({
 
         var getItemStyle = function (index) {
             return {
+                color: '#eee',
+                fontSize: 60,
+                lineHeight: '265px',
+                textAlign: 'center',
                 background: 'url('+require('./img/'+index%15+'.jpg')+') 100% 100% no-repeat', 
                 backgroundSize:'100% 100%'
             }
         };
-        var __handleBoxFocus = _handleBoxFocus;//getItemStyle(i+4*_index) 
-        const styles = getStyles();
+
+        var getItemViewSize = {
+            top: 10,
+            width:565,
+            height: 365,
+            padding: 5
+        };
 
         for(var i=0; i<_num; ++i) {
             items.push(< CaphListItem 
                 key={i}
                 focusable = {setInit(i)}
-                className={'box'}
-                background={getItemStyle(i+4*_index)}
-                index={i}
-                onBoxFocus={__handleBoxFocus}
-
+                itemViewSize = {getItemViewSize}
+                itemStyle={getItemStyle(i+4*_index)}
+                onBoxFocus={_handleBoxFocus}
                 //for listarea scroll
                 listAreaIndex={_index}/>);
         }
@@ -85,7 +92,7 @@ var listDemo = React.createClass({
             {num:10, title:'Bing '},
             {num:10, title:'Google '},
             {num:10, title:'Mi '},*/
-            {num:150, title:'TOYOTA '}];//, direction:'vertical'
+            {num:20, title:'TOYOTA '}];//, direction:'vertical'
 
         var _handleBoxFocus = this.handleBoxFocus;
         var _setItems = this.setItems;

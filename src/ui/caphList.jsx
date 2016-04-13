@@ -112,22 +112,31 @@ const caphList = React.createClass({
     render() {
         const props = this.props;
 
-        const listChildren = React.Children.map(this.props.children, (currentChild)=>{
+        const listChildren = React.Children.map(this.props.children, (currentChild, index)=>{
 
-            //console.log(currentChild);
+            //console.log(currentChild.props.itemViewSize);
+
+            const _index = index;
+            const itemViewSize = currentChild.props.itemViewSize;
+            
             var positionStyle = {
-                width:265,
-                height: 265,
+                width: itemViewSize.width,
+                height: itemViewSize.height,
                 position: 'absolute',
-                transform: 'translate3d('+ (currentChild.props.index*270) +'px,0,0)',
+                transform: 'translate3d('+ (_index*(itemViewSize.width+itemViewSize.padding)) 
+                            +'px,'
+                            + itemViewSize.top +'px,0)',
             }
             
             return React.cloneElement(currentChild, 
-                {scrollList: this.moveList, 
-                    style:Object.assign({}, currentChild.props.background, positionStyle) });
+                {   scrollList: this.moveList,
+                    className: 'list-items',
+                    index: _index,
+                    style:Object.assign({}, currentChild.props.itemStyle, positionStyle) 
+                });
         });
 
-        //console.log(this.props.containerStyle);
+        //console.log(listChildren.length);
 
         return (<div
             style={Object.assign({}, this.state.moveListStyle, props.containerStyle)}>

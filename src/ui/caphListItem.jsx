@@ -54,10 +54,10 @@ const CaphListItem = React.createClass({
         //style={Object.assign({},props.style, props.background)}
 
         return <div className = {this.state.classNames}
-        focusable = {{ initialFocus: props.focusable}}
-        style={props.style} >
-        {this.props.index}
-        </div>;
+                focusable = {{ initialFocus: props.focusable}}
+                style={props.style}>
+                {this.props.index}
+            </div>;
     }
 });
 
