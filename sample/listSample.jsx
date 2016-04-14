@@ -11,10 +11,10 @@ const getStyles = () => {
             position: 'relative',
             top: 10,
             left: 30,
-            height: 200,
-            width:1920,
+            height: 800,
+            width:1800,
             marginBottom: 50,
-            //background:'red'
+            //background:'red',
         }
     };
 
@@ -52,8 +52,8 @@ var listDemo = React.createClass({
         var getItemStyle = function (index) {
             return {
                 color: '#eee',
-                fontSize: 60,
-                lineHeight: '165px',
+                fontSize: 40,
+                lineHeight: '150px',
                 textAlign: 'center',
                 background: 'url(./img/'+index%15+'.jpg) 100% 100% no-repeat', 
                 backgroundSize:'100% 100%'
@@ -83,7 +83,7 @@ var listDemo = React.createClass({
             {num:10, title:'Bing '},
             {num:10, title:'Google '},*/
             //{num:30, title:'Mi '},
-            {num:300, title:'TOYOTA '}];
+            {num:100, title:'TOYOTA '}];
         
         var _setItems = this.setItems;
 
@@ -96,11 +96,10 @@ var listDemo = React.createClass({
                         <div className={'list-title'}>{data.title+i}</div>
 
                         <CaphList 
-                            itemHeigh={200}
-                            aspectRatio={1}
-                            padding={10}
+                            itemHeigh={250}
+                            aspectRatio={0}
+                            padding={20}
                             direction={'h'}
-                            cols={4}
                             style={styles.listArea}
                         >
                             {_setItems(i, data.num)}
