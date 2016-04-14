@@ -11,7 +11,7 @@ const getStyles = () => {
             position: 'relative',
             top: 10,
             left: 30,
-            height: 600,
+            height: 200,
             width:1920,
             marginBottom: 50,
             //background:'red'
@@ -55,7 +55,7 @@ var listDemo = React.createClass({
                 fontSize: 60,
                 lineHeight: '165px',
                 textAlign: 'center',
-                background: 'url('+require('./img/'+index%15+'.jpg')+') 100% 100% no-repeat', 
+                background: 'url(./img/'+index%15+'.jpg) 100% 100% no-repeat', 
                 backgroundSize:'100% 100%'
             }
         };
@@ -81,9 +81,9 @@ var listDemo = React.createClass({
             {num:10, title:'Samsung '},
             {num:10, title:'Apple '},
             {num:10, title:'Bing '},
-            {num:10, title:'Google '},
-            {num:10, title:'Mi '},*/
-            {num:20, title:'TOYOTA '}];
+            {num:10, title:'Google '},*/
+            //{num:30, title:'Mi '},
+            {num:300, title:'TOYOTA '}];
         
         var _setItems = this.setItems;
 
@@ -100,7 +100,7 @@ var listDemo = React.createClass({
                             aspectRatio={1}
                             padding={10}
                             direction={'h'}
-                            cols={2}
+                            cols={4}
                             style={styles.listArea}
                         >
                             {_setItems(i, data.num)}

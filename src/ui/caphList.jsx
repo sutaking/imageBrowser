@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 var itemWidth, limit;
+const listAreaWidth = 1920;
 
 const caphList = React.createClass({
 
@@ -48,9 +49,17 @@ const caphList = React.createClass({
         return {};
     },
 
+    getItemWith() {
+        const props = this.props;
+
+        itemWidth = this.getItemWidth(props.itemHeigh, props.aspectRatio)+props.padding;
+        limit = Math.floor((listAreaWidth-props.style.left)/itemWidth);
+    },
+
     moveList(index, item, keyCode) {
 
-        const listAreaWidth = 1920;
+        const props = this.props;
+        //const listAreaWidth = 1920;
         var currentList = ReactDOM.findDOMNode(this);
         const listAreaOffset = currentList.getBoundingClientRect().left;
 
@@ -62,29 +71,34 @@ const caphList = React.createClass({
             DOWN: 40
         }
 
-        if(index === 1) {
-            itemWidth = item.getBoundingClientRect().left-listAreaOffset;
-            limit = Math.floor((listAreaWidth-listAreaOffset)/item.offsetWidth);
-        };
+        //if(index === 1) {
+            //itemWidth = this.getItemWidth(props.itemHeigh, props.aspectRatio)+props.padding;
+            //limit = Math.floor((listAreaWidth-props.style.left)/itemWidth);
+            //console.log(limit);
+            //console.log(item.offsetWidth);
+            //console.log(itemWidth);
+        //};
 
         function getScrollIndex (_index) {
-            return _index+1-limit;
+            //console.log();
+            return (_index/props.cols)+1-limit;
         };
 
-        function keyCodeTop () {
+        function keyCodeUp () {
 
         };
 
-        function keyCodeBottom () {
+        function keyCodeDown () {
 
         };
 
         function keyCodeLeft () {
+            //console.log('keyCodeLeft');
             if(item.getBoundingClientRect().right > itemWidth) {
                 return;
             }
             //return -item.offsetLeft;
-            return -index*itemWidth;
+            return -(index/props.cols)*itemWidth;
         };
 
         function keyCodeRight () {
@@ -95,24 +109,31 @@ const caphList = React.createClass({
                 return 0;
             }*/
             else {
-                //console.log('3333');
                 return getScrollIndex(index)* -itemWidth;
             }
         };
 
-        var distance;
-        if (this.props.direction === 'vertical') {
+        var distance = {};
+        if (props.direction === 'v' || props.direction === 'V') {
         }
         else {
             switch(keyCode) {
                 case keyMap.LEFT:
-                    distance = keyCodeLeft();
+                    distance.left = keyCodeLeft();
+                    distance.top = 0;
                     break;
                 case keyMap.RIGHT:
-                    distance = keyCodeRight();
+                    distance.left = keyCodeRight();
+                    distance.top = 0;
                     break;
                 case keyMap.UP:
+                    distance.left = 0;
+                    distance.top = keyCodeUp();
+                    break;
                 case keyMap.DOWN:
+                    distance.left = 0;
+                    distance.top = keyCodeDown();
+                    break;
                     return;
             }
         }
@@ -126,11 +147,14 @@ const caphList = React.createClass({
     },
     
     _handleScrollState(pos) {
-        //if(!pos){return}
+
         //console.log('_handleScrollState:'+pos);
         var moveListStyle = {
-            transform: 'translate3d('+ pos +'px,0,0)',
+            //transform: 'translate3d('+ pos +'px,0,0)',
             transition: '.5s transform ease-out',
+            transform: 'translate3d('
+                            + pos.left +'px,'
+                            + pos.top +'px,0)',
         };
         this.setState({
             moveListStyle: moveListStyle 
@@ -185,6 +209,7 @@ const caphList = React.createClass({
 
     render() {
         const props = this.props;
+        this.getItemWith();
 
         const listChildren = React.Children.map(this.props.children, (currentChild, index)=>{
             //console.log(props.itemHeigh);
