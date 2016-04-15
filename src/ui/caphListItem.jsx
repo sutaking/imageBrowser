@@ -22,18 +22,11 @@ const CaphListItem = React.createClass({
     getInitialState: function() {
         return {};
     },
-    /*componentWillMount: function() {
-        console.log("componentWillMount - Box, 3");
-        //this.setState({ready: true});
-    },*/
 
     focus: function(keyCode) {
         this.setState({
             classNames: this.props.className + ' focused'
         });
-        
-        //var currentItem = ReactDOM.findDOMNode(this);
-        //console.log(currentItem.getBoundingClientRect().right);
         
         this.props.scrollList(this.props.index, ReactDOM.findDOMNode(this), keyCode);
         //this.props.onBoxFocus(this.props.listAreaIndex);

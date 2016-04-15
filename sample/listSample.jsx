@@ -28,7 +28,7 @@ var listDemo = React.createClass({
         };
     },
 
-    handleBoxFocus(index) {
+    /*handleBoxFocus(index) {
         var distance = -350 * index;
         var newListStyle = {
             transform: 'translate3d(0px, ' + distance + 'px, 0)',
@@ -37,7 +37,7 @@ var listDemo = React.createClass({
         this.setState({
             newListStyle: newListStyle 
         });
-    },
+    },*/
 
     setItems(_index, _num) {
         var items = [];
@@ -68,7 +68,6 @@ var listDemo = React.createClass({
                 //onBoxFocus={_handleBoxFocus}
                 //listAreaIndex={_index}
         }
-
         return items;
     },
 
@@ -76,12 +75,6 @@ var listDemo = React.createClass({
 
         var listArray = [
             //{num:10, title:'Amazon '},
-            /*{num:200, title:'UA '},
-            {num:18, title:'TaoBao '},
-            {num:10, title:'Samsung '},
-            {num:10, title:'Apple '},
-            {num:10, title:'Bing '},
-            {num:10, title:'Google '},*/
             //{num:30, title:'Mi '},
             {num:100, title:'TOYOTA '}];
         
@@ -99,7 +92,7 @@ var listDemo = React.createClass({
                             itemHeigh={250}
                             aspectRatio={0}
                             padding={20}
-                            direction={'h'}
+                            direction={'v'}
                             style={styles.listArea}
                         >
                             {_setItems(i, data.num)}
