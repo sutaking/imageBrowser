@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var itemWidth, itemHeight, limitRows, limitCols, listAreaWidth;
+var itemWidth, itemHeight, limitRows, limitCols, listAreaWidth, listLength;
 
 const caphList = React.createClass({
 
@@ -56,10 +56,17 @@ const caphList = React.createClass({
         itemHeight = props.itemHeigh + props.padding;
         limitRows = this.getLimit(listAreaWidth, itemWidth);
         limitCols = this.getLimit(this.props.style.height, itemHeight);
+
+    },
+
+    isListEnd(index) {
+        if(Math.floor(listLength/limitRows) === (index/limitRows)) {
+            return true;
+        }
+        return false;
     },
 
     moveList(index, item, keyCode) {
-        
         const props = this.props;
 
         var currentList = ReactDOM.findDOMNode(this);
@@ -71,7 +78,7 @@ const caphList = React.createClass({
             UP: 38,
             DOWN: 40
         }
-
+        
         const itemOffset = item.getBoundingClientRect();
 
         function getScrollIndex (_index) {
@@ -113,7 +120,7 @@ const caphList = React.createClass({
             switch(keyCode) {
                 case keyMap.UP:
                 case keyMap.DOWN:
-                    this._handleScrollVertical(getIndexVertical(keyCode), index);
+                    this._handleScrollVertical(getIndexVertical(keyCode));
                     break;
             }
         }
@@ -127,7 +134,6 @@ const caphList = React.createClass({
                     break;
             }
         }
-        
     },
     
     _handleScrollVertical(pos, index) {
@@ -225,8 +231,7 @@ const caphList = React.createClass({
                     style:Object.assign({}, currentChild.props.style, positionStyle) 
                 });
         });
-
-        //console.log(listChildren.length);
+        listLength = listChildren.length;
 
         return (<div style={{overflow:'hidden', height: props.style.height, width:props.style.width}}>
             <div
