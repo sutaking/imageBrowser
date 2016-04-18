@@ -76,7 +76,7 @@ var listDemo = React.createClass({
         var listArray = [
             //{num:10, title:'Amazon '},
             //{num:30, title:'Mi '},
-            {num:100, title:'TOYOTA '}];
+            {num:100, title:'Samsung '}];
         
         var _setItems = this.setItems;
 
@@ -92,7 +92,7 @@ var listDemo = React.createClass({
                             itemHeigh={250}
                             aspectRatio={0}
                             padding={20}
-                            direction={'v'}
+                            direction={'h'}
                             style={styles.listArea}
                         >
                             {_setItems(i, data.num)}
