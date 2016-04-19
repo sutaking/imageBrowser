@@ -21,6 +21,20 @@ const getStyles = () => {
     return styles;
 };
 
+var onSelected = function(){
+    console.log(' - - - - - - - - - onSelected function...');
+    // Change depth example
+    //Focusable.controllerProvider.getInstance().setDepth(1);
+}
+
+var onFocused = function(){
+    console.log(' - - - - - - - - - onFocused function...');
+}
+
+var onBlurred = function(){
+    console.log(' - - - - - - - - - onBlurred function...');
+}
+
 var listDemo = React.createClass({
     getInitialState() {
         return {
@@ -65,6 +79,9 @@ var listDemo = React.createClass({
                 < CaphListItem 
                 key={i}
                 focusable = {setInit(i)}
+                onSelected = {onSelected}
+                onFocused = {onFocused}
+                onBlurred = {onBlurred}
                 style={getItemStyle(i+4*_index)}>
                     <div>GGGGGG</div>
                     <div>OOOOOO</div>
