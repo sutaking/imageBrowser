@@ -9,13 +9,19 @@ const CaphListItem = React.createClass({
 
     propTypes: {
 
+        /**
+         * focusable if true.
+         */
         focusable: React.PropTypes.object,
 
+        /**
+         * index of list item.
+         */
         index: React.PropTypes.number,
 
-        onBoxFocus: React.PropTypes.func,
+        //onBoxFocus: React.PropTypes.func,
 
-        listAreaIndex: React.PropTypes.number
+        //listAreaIndex: React.PropTypes.number
 
     },
 
@@ -47,7 +53,7 @@ const CaphListItem = React.createClass({
         return <div className = {this.state.classNames}
                 focusable = {{ initialFocus: props.focusable}}
                 style={props.style}>
-                {this.props.index}
+                    {props.children}
             </div>;
     }
 });
