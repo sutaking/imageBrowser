@@ -2,10 +2,10 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import FocusMixin from '../focus/focusMixin';
+import Focusable from '../focus/focusMixin';
 
 const CaphListItem = React.createClass({
-    mixins: [FocusMixin],
+    mixins: [Focusable.activation],
 
     propTypes: {
 
@@ -26,22 +26,23 @@ const CaphListItem = React.createClass({
     },
 
     getInitialState: function() {
-        return {};
+        return {
+            className: this.props.className
+        };
     },
 
     focus: function(keyCode) {
-        this.setState({
-            classNames: this.props.className + ' focused'
-        });
-        
+        /*this.setState({
+            className: this.props.className + ' focused'
+        });*/
         this.props.scrollList(this.props.index, ReactDOM.findDOMNode(this), keyCode);
         //this.props.onBoxFocus(this.props.listAreaIndex);
     },
 
     blur: function(keyCode) {
-        this.setState({
-            classNames: this.props.className
-        });
+        /*this.setState({
+            className: this.props.className
+        });*/
     },
     render: function() {
         const props = this.props;
@@ -50,7 +51,7 @@ const CaphListItem = React.createClass({
         //onMouseLeave = { this.blur } 
         //style={Object.assign({},props.style, props.background)}
 
-        return <div className = {this.state.classNames}
+        return <div className = {this.state.className}
                 focusable = {{ initialFocus: props.focusable}}
                 style={props.style}>
                     {props.children}
