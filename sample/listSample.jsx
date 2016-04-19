@@ -61,10 +61,15 @@ var listDemo = React.createClass({
         };
 
         for(var i=0; i<_num; ++i) {
-            items.push(< CaphListItem 
+            items.push(
+                < CaphListItem 
                 key={i}
                 focusable = {setInit(i)}
-                style={getItemStyle(i+4*_index)}/>);
+                style={getItemStyle(i+4*_index)}>
+                    <div>GGGGGG</div>
+                    <div>OOOOOO</div>
+                </CaphListItem>
+                );
                 //onBoxFocus={_handleBoxFocus}
                 //listAreaIndex={_index}
         }
