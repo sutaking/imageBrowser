@@ -29,7 +29,8 @@
     "babel-polyfill": "^6.7.4",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
-    "react-event-emitter-mixin": "0.0.4"
+    "react-event-emitter-mixin": "0.0.4",
+    "react-router": "^2.3.0"
   },
   "devDependencies": {
     "babel-core": "^6.6.5",
