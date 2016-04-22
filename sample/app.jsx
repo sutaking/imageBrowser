@@ -4,6 +4,7 @@ import { Router, Route, Link } from 'react-router'
 import "babel-polyfill";
 
 import ListDemo from './listSample';
+import FocusSample from './focus/focus';
 
 require('../style/base.css')
 
@@ -26,10 +27,9 @@ const listDemoComponent = React.createClass({
     }
 });
 
-const app2 = React.createClass({
-
+const focusDemo = React.createClass({
     render() {
-        return (<div>This app2</div>);
+        return (<div style={{width:'1920px', height: '1080px', background:'black'}}><FocusSample/></div>);
     }
 });
 
@@ -40,19 +40,18 @@ const demoRouter = React.createClass({
         <h1>CAPH Demo Router Tutorial</h1>
         <ul role="nav">
           <li><Link to="/ListDemo">ListDemo</Link></li>
-          <li><Link to="/app2">app222222</Link></li>
+          <li><Link to="/FocusDemo">FocusDemo</Link></li>
         </ul>
       </div>
     )
   }
 });
 
-
 ReactDOM.render((
   <Router >
     <Route path="/" component={demoRouter}/>
     <Route path="/ListDemo" component={listDemoComponent}/>
-    <Route path="/app2" component={app2}/>
+    <Route path="/FocusDemo" component={focusDemo}/>
   </Router>
 ), document.getElementById('container'));
 
