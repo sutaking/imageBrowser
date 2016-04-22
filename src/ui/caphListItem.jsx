@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Focusable from '../focus/focusMixin';
+import Focusable from '../focus/focusable';
 
 const CaphListItem = React.createClass({
     mixins: [Focusable.activation],
