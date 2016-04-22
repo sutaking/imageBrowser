@@ -35,8 +35,8 @@ var NameGenerator = {
 var NAMESPACE = '.focusable';
 
 var MOUSE_EVENTS = {
-    mouseover: 'focus',
-    mouseout: 'blur',
+    mouseenter: 'focus',
+    mouseleave: 'blur',
     click: 'select'
 };
 
@@ -53,7 +53,8 @@ var Util = {
         return isElementNode(getElementNode(item));
     },
 
-    isVisible: function(item) {// TODO 
+    isVisible: function(item) {
+        // TODO isVisible implement
         return true;
     },
 
@@ -68,19 +69,13 @@ var Util = {
         if (!Util.isFocusable(item)) {
             return null;
         }
-
         var data = {};
         Object.assign(data, getFocusableData(item), option);
         return setFocusableData(item, data);
     },
 
     bindMouseEvent: function(componment, callback) {
-        Object.keys(MOUSE_EVENTS).forEach(function(mouseEvent) {
-            /*$(componment).on(mouseEvent + NAMESPACE, {
-                method: MOUSE_EVENTS[mouseEvent]
-            }, callback);*/
-            componment.eventEmitter('on', mouseEvent, callback); //TODO +NAMESPACE
-        });
+        componment.setState({ handleMouseEvent: callback });
         return this;
     },
 
@@ -94,14 +89,15 @@ var Util = {
     unbindEvent: function(componment) {
         /*if (Util.isElement(element)) {
             $(element).off(NAMESPACE);
-        }*/
-        componment && componment.eventEmitter('off', NAMESPACE);//TODO NAMESPACE
+        }
+        componment && componment.eventEmitter('off', NAMESPACE); //TODO NAMESPACE
+        */
         return this;
     }
 };
 
 function isFunction(fn) {
-    return fn instanceof Function;   
+    return fn instanceof Function;
 }
 
 function toString(data) {
@@ -122,7 +118,6 @@ function getFocusableData(item) {
             nextFocus[direction] = toString(value);
         }
     });
-    
     return {
         depth: data.focusableDepth,
         group: toString(data.focusableGroup),
@@ -151,11 +146,11 @@ function setFocusableData(item, option) {
         }
     });
 
-    return item.focusableData.focusableName;//item.data('focusableName');
+    return item.focusableData.focusableName;
 }
 
 function getElementNode(target) {
-    return target;//target && (target instanceof $) ? target[0] : target;
+    return target; //target && (target instanceof $) ? target[0] : target;
 }
 
 function isElementNode(target) {
@@ -173,18 +168,19 @@ function NearestFocusableFinderProvider() {
     var beforeDistanceCalculationHandlers = [];
     var currentDistanceCalculationStrategy = Constant.DEFAULT.DISTANCE_CALCULATION_STRATEGY;
 
-    function getWindow( elem ) {
+    function getWindow(elem) {
         return (elem != null && elem === elem.window) ? elem : elem.nodeType === 9 && elem.defaultView;
     }
 
     function offsetPosition(elem) {
-        var docElem, win, box = { top: 0, left: 0 }, doc = elem && elem.ownerDocument;
-        if ( !doc ) {
+        var docElem, win, box = { top: 0, left: 0 },
+            doc = elem && elem.ownerDocument;
+        if (!doc) {
             return;
         }
         docElem = doc.documentElement;
         box = elem.getBoundingClientRect();
-        win = getWindow( doc );
+        win = getWindow(doc);
         return {
             top: box.top + win.pageYOffset - docElem.clientTop,
             left: box.left + win.pageXOffset - docElem.clientLeft
@@ -319,7 +315,7 @@ function NearestFocusableFinderProvider() {
     function createNearestFocusableFinder() {
         var slice = Array.prototype.slice;
         var focusableComponents = {};
-        //var observer;
+        var observer;
 
         var nearestFocusableFinder = {
             getInitial: function(depth, group) {
@@ -347,7 +343,6 @@ function NearestFocusableFinderProvider() {
                 var targetFocusableData;
 
                 if (Util.isFocusable(target) && (targetFocusableData = Util.getData(target))) {
-                    //targetPosition = getPosition(target);
 
                     targetPosition = getPosition(target);
 
@@ -355,7 +350,7 @@ function NearestFocusableFinderProvider() {
                         var focusable = focusableComponents[name];
                         var neighborFocusableData = Util.getData(focusable);
 
-                        if (focusable !== target && Util.isVisible(focusable) && (!neighborFocusableData.disabled ) && targetFocusableData.depth === Util.getData(focusable).depth) {
+                        if (focusable !== target && Util.isVisible(focusable) && (!neighborFocusableData.disabled) && targetFocusableData.depth === Util.getData(focusable).depth) {
                             if (beforeDistanceCalculationHandlers.some(function(handler) {
                                     return handler(focusable) === false;
                                 })) {
@@ -378,17 +373,17 @@ function NearestFocusableFinderProvider() {
                 var name;
 
                 if (Util.isFocusable(focusable) && (name = Util.setData(focusable, option))) {
-                    focusableComponents[name] = focusable;//Util.getElement(focusable);
+                    focusableComponents[name] = focusable;
                 }
 
                 return this;
             },
             $$get: function(name) {
                 return focusableComponents[name];
-            }/*,
-            $$remove: function(target) {
-                
-            }*/
+            }
+            //,
+            //$$remove: function(target) {
+            //}
         };
 
         function iterate(nodeList, callback, useSetData) {
@@ -442,9 +437,7 @@ function ControllerProvider() {
     var beforeHandlers = [];
     var afterHandlers = [];
 
-    var noop =  function() {
-        //console.log('noop>>>>>>>>>>>>>>>>>>>>>>>>>');
-    };
+    var noop = function() {};
 
     var callbacks = {
         focused: noop,
@@ -486,7 +479,6 @@ function ControllerProvider() {
 
     initialGroup[Constant.DEFAULT.DEPTH] = Constant.DEFAULT.GROUP;
 
-
     this.setInitialDepth = function(depth) {
         initialDepth = depth;
         return this;
@@ -503,7 +495,7 @@ function ControllerProvider() {
         /*if ($.isPlainObject(group)) {
             data = group;
         } else {*/
-            data[depth] = group;
+        data[depth] = group;
         //}
         Object.assign(initialGroup, data);
         return this;
@@ -532,34 +524,28 @@ function ControllerProvider() {
         return addHandler(afterHandlers, handler);
     };
 
-
     this.removeBeforeKeydownHandler = function(handler) {
         return removeHandler(beforeHandlers, handler);
     };
 
-
     this.removeAfterKeydownHandler = function(handler) {
         return removeHandler(afterHandlers, handler);
     };
-
 
     this.setFocusWhenDisabled = function(bool) {
         focusWhenDisabled = bool;
         return this;
     };
 
-
     this.isFocusWhenDisabled = function() {
         return focusWhenDisabled;
     };
-
 
     this.getInstance = function() {
         if (instance === null) {
             instance = createController();
             return instance;
         }
-
         return instance;
     };
 
@@ -649,9 +635,8 @@ function ControllerProvider() {
                 data = Util.getData(item);
                 if (data.depth === currentDepth && (!data.disabled || focusWhenDisabled)) {
                     if (currentFocusItem) {
-                        //blurItem(currentFocusItem, originalEvent);
+                        blurItem(currentFocusItem, originalEvent);
                     }
-                    //console.log('focusItem--------------------------------trigger');
                     trigger(item, 'focused', [originalEvent]);
                     currentGroup = data.group;
                     currentFocusItem = item;
@@ -801,7 +786,6 @@ function ControllerProvider() {
                         //blurItem(currentFocusItem, $.Event('disabled'));
                         //TODO
                     }
-
                     //$(element).addClass(DISABLED_CLASS_NAME); TODO
                 });
                 return this;
@@ -822,29 +806,24 @@ function ControllerProvider() {
                 return this;
             },
 
-            $$invoke: function(type, originalEvent/*, event, originalEvent*/) {
-                //console.log('$$invoke>>>>>>>>>>>>>>>>>> callbacks : ');
+            $$invoke: function(type, originalEvent /*, event, originalEvent*/ ) {
                 var callback = callbacks[type];
-                
                 if (callback) {
                     callback(type, originalEvent);
                 }
             },
 
             $$unbind: function() {
-                //$(document).off(NAMESPACE);
+                //(document).off(NAMESPACE);
             }
         };
 
         window.onload = function(event) {
             setTimeout(function() {
-                //console.log('<<<<<<<<<<<<<<<<<<<onload>>>>>>>>>>>>>>');
-                //console.log(initialFocusItem);
                 focusItem(getItem(initialFocusItem), event);
             }, 0);
         }
 
-        //$(document).on('keydown' + NAMESPACE, function(event) {
         document.onkeydown = function(event) {
             var keyCode = event.keyCode || event.which || event.charCode;
             var nextFocusItem;
@@ -908,7 +887,7 @@ var DISABLED_CLASS_NAME = 'disabled';
 function toggleDisabledClass(target) {
     var className = target.state.className;
     target.setState({
-        classNames : target.focusableData.focusableDisabled ? (className + ' ' + DISABLED_CLASS_NAME) : className.replace(DISABLED_CLASS_NAME, '')
+        classNames: target.focusableData.focusableDisabled ? (className + ' ' + DISABLED_CLASS_NAME) : className.replace(DISABLED_CLASS_NAME, '')
     });
 }
 
@@ -917,31 +896,21 @@ function toggleClass(target, type) {
     switch (type) {
         case 'focused':
             target.setState({
-                className : className + ' ' + FOCUSED_CLASS_NAME
+                className: className + ' ' + FOCUSED_CLASS_NAME
             });
             break;
         case 'blurred':
             target.setState({
-                className : className.replace(FOCUSED_CLASS_NAME, '')
+                className: className.replace(FOCUSED_CLASS_NAME, '')
             });
             break;
     }
 }
 
-// 4 react
 var Activation = {
     mixins: [EventEmitterMixin],
-
-    getDefaultProps: function() {
-        return { name: "Tom" };
-    },
-    getInitialState: function() {
-        //return {
-            //className : this.props.className
-        //}
-    },
+    
     componentWillMount: function() {
-
         var nearestFocusableFinder = focusable.nearestFocusableFinderProvider.getInstance();
         var controller = focusable.controllerProvider.getInstance();
 
@@ -952,15 +921,17 @@ var Activation = {
             toggleDisabledClass(this);
 
             Util.bindMouseEvent(this, function(event) {
+                console.log('bindMouseEvent cb, event:' + event.type);
+
                 var target = event.currentTarget || event.target;
 
-                if (controller.$$ignoreMouseEvent !== true && this.focusableData.depth === controller.getCurrentDepth()) {
-                    controller[event.data.method](target, event);
+                if (controller.$$ignoreMouseEvent !== true && this.focusableData.focusableDepth === controller.getCurrentDepth()) {
+                    controller[MOUSE_EVENTS[event.type]](this, event);
                 }
-            });
+            }.bind(this));
 
-            Util.bindFocusableEvent(this, function(target, type, originalEvent/*event, originalEvent*/) {
-                if(this === target) {
+            Util.bindFocusableEvent(this, function(target, type, originalEvent /*event, originalEvent*/ ) {
+                if (this === target) {
                     toggleClass(target, type);
                     controller.$$invoke(type, originalEvent);
                 }
@@ -969,24 +940,7 @@ var Activation = {
             focusable.controllerProvider.onBlurred(this.props.onBlurred);
             focusable.controllerProvider.onSelected(this.props.onSelected);
         }
-    },
-    componentDidMount: function() {
-       
-    },
-    componentWillReceiveProps: function(newProps) {
-        
-    },
-    shouldComponentUpdate: function() {
-        
-        return true;
-    },
-    componentWillUpdate: function() {
-        
-    },
-
-    componentDidUpdate: function() {
-        
-    },
+    }
 };
 
 var focusable = {
@@ -995,43 +949,6 @@ var focusable = {
     controllerProvider: new ControllerProvider(),
     nearestFocusableFinderProvider: new NearestFocusableFinderProvider(),
     activation: Activation
-        /*,
-            activate: function(config) {
-                if ($.isFunction(config)) {
-                    config($.caph.focus.nearestFocusableFinderProvider, $.caph.focus.controllerProvider);
-                }
-
-                $('[focusable]').each(function() {
-                    $.caph.focus.$$toAvailable(this);
-                });
-            },
-
-            $$toAvailable: function(element) {
-                var nearestFocusableFinder = $.caph.focus.nearestFocusableFinderProvider.getInstance();
-                var controller = $.caph.focus.controllerProvider.getInstance();
-
-                if (!nearestFocusableFinder.$$get(Util.getData(element).name)) {
-                    nearestFocusableFinder.$$put(element);
-                    controller.$$setInitialFocusItem(element);
-
-                    //toggleDisabledClass(element);
-
-                    /*Util.bindMouseEvent(element, function(event) {
-                        var target = event.currentTarget || event.target;
-
-                        if (controller.$$ignoreMouseEvent !== true && Util.getData(target).depth === controller.getCurrentDepth()) {
-                            controller[event.data.method](target, event);
-                        }
-                    });
-
-                    Util.bindFocusableEvent(element, function(event, originalEvent) {
-                        toggleClass(element, event.type);
-                        controller.$$invoke(event.type, event, originalEvent);
-                    });
-                }
-
-                return element;
-            }*/
 };
 
 module.exports = focusable;
