@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link } from 'react-router'
+import { Router, Route, Link, browserHistory } from 'react-router'
 import "babel-polyfill";
 
 import ListDemo from './listSample';
@@ -22,7 +22,7 @@ const listDemoComponent = React.createClass({
     render() {
         return (<div className={'wrapper'}>
             <div className={'demo-title'}>React ListDemo</div>
-            <ListDemo/>
+            < ListDemo / >
             </div>);
     }
 });
@@ -48,7 +48,7 @@ const demoRouter = React.createClass({
 });
 
 ReactDOM.render((
-  <Router >
+  <Router history={browserHistory}>
     <Route path="/" component={demoRouter}/>
     <Route path="/ListDemo" component={listDemoComponent}/>
     <Route path="/FocusDemo" component={focusDemo}/>
