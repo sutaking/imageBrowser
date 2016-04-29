@@ -27,10 +27,10 @@ module.exports = {
         warnings: false
       }
     }),
-    new webpack.ProvidePlugin({
+    /*new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery"
-    }),
+    }),*/
     new ExtractTextPlugin("styles.css")
   ],
   module: {

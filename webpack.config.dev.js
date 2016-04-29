@@ -26,10 +26,10 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-    new webpack.ProvidePlugin({
+    /*new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery"
-    }),
+    }),*/
     new ExtractTextPlugin("styles.css")
   ],
   module: {
