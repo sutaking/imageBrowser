@@ -4,18 +4,32 @@ import { Router, Route, Link, browserHistory } from 'react-router'
 import "babel-polyfill";
 
 import ListDemo from './listSample';
+import ButtonDemo from './buttonSample';
 import FocusSample from './focus/focus';
 
-require('../style/base.css')
+import '../style/base.css';
 
-/*const appComponent = (<div>
+console.log('---------- fzhao app start -----------');
+
+document.addEventListener('DOMContentLoaded',function(){
+    console.log('---------- fzhao DOMContentLoaded finish! ---------- ');
+    },
+false);
+
+window.addEventListener("load", function() {
+    console.log("---------- fzhao All resources finished loading! ----------");
+}, false);
+
+/*
+const appComponent = (<div>
     <div className={'demo-title'}>React ListDemo</div>
     <ListDemo/>
     </div>);
 
 ReactDOM.render(
-    demoRouter, document.getElementById('container')
+    appComponent, document.getElementById('container')
 );*/
+
 
 const listDemoComponent = React.createClass({
 
@@ -41,6 +55,7 @@ const demoRouter = React.createClass({
         <ul role="nav">
           <li><Link to="/ListDemo">ListDemo</Link></li>
           <li><Link to="/FocusDemo">FocusDemo</Link></li>
+          <li><Link to="/ButtonDemo">ButtonDemo</Link></li>
         </ul>
       </div>
     )
@@ -52,6 +67,10 @@ ReactDOM.render((
     <Route path="/" component={demoRouter}/>
     <Route path="/ListDemo" component={listDemoComponent}/>
     <Route path="/FocusDemo" component={focusDemo}/>
+    <Route path="/ButtonDemo" component={ButtonDemo}/>
   </Router>
 ), document.getElementById('container'));
+
+
+
 
