@@ -1,6 +1,7 @@
 import React from 'react';
 
-import CaphList from '../src/ui/caphList';
+//import CaphList from '../src/ui/caphList';
+import { CaphList } from 'CaphReact';
 import CaphListItem from '../src/ui/caphListItem';
 
 
