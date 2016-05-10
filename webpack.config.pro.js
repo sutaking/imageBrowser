@@ -6,11 +6,22 @@ var path = require('path');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
-  entry: './sample/app',
+  entry: './src/index',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: 'caph-react.min.js',
     publicPath: '/'
+  },
+  /*output: {
+    library: 'CaphReact',
+    libraryTarget: 'umd',
+    filename: 'caph-react.min.js'
+  },*/
+  externals: {
+    'react': 'React',
+    'react-dom': 'ReactDOM',
+    'react-router': 'ReactRouter',
+    'react-event-emitter-mixin': 'EventEmitterMixin'
   },
   resolve: {
     extensions: ['', '.js','.jsx']
@@ -22,11 +33,11 @@ module.exports = {
         'NODE_ENV': JSON.stringify('production')
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
+    /*new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
       }
-    }),
+    }),*/
     /*new webpack.ProvidePlugin({
         $: "jquery",
         jQuery: "jquery"
