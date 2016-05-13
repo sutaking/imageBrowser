@@ -68,11 +68,10 @@ var listDemo = React.createClass({
             return {
                 color: '#eee',
                 fontSize: 40,
-                lineHeight: '250px',
+                lineHeight: '150px',
                 textAlign: 'center',
-                background: 'blue'
-                //background: 'url(./img/'+index%15+'.jpg) 100% 100% no-repeat', 
-                //backgroundSize:'100% 100%'
+                background: 'url(./img/'+index%15+'.jpg) 100% 100% no-repeat', 
+                backgroundSize:'100% 100%'
             }
         };
 
@@ -85,7 +84,8 @@ var listDemo = React.createClass({
                 onFocused = {onFocused}
                 onBlurred = {onBlurred}
                 style={getItemStyle(i+4*_index)}>
-                    <div>{i}</div>
+                    <div>GGGGGG</div>
+                    <div>OOOOOO</div>
                 </CaphListItem>
                 );
                 //onBoxFocus={_handleBoxFocus}
@@ -99,7 +99,7 @@ var listDemo = React.createClass({
         var listArray = [
             //{num:10, title:'Amazon '},
             //{num:30, title:'Mi '},
-            {num:300, title:'Samsung '}];
+            {num:100, title:'Samsung '}];
         
         var _setItems = this.setItems;
 
@@ -113,7 +113,7 @@ var listDemo = React.createClass({
 
                         <CaphList 
                             itemHeigh={250}
-                            aspectRatio={1}
+                            aspectRatio={0}
                             padding={20}
                             direction={'h'}
                             style={styles.listArea}
