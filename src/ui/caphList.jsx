@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var itemWidth, itemHeight, limitRows, limitCols, listAreaWidth, listLength;
+var itemWidth,itemHeight, limitRows, limitCols, listAreaWidth, listLength;
 
 const caphList = React.createClass({
 
@@ -35,7 +35,7 @@ const caphList = React.createClass({
         /**
          * event func for focus.
          */
-        //onBoxFocus: React.PropTypes.func
+        scrollArea: React.PropTypes.func
 
     },
 
@@ -49,14 +49,13 @@ const caphList = React.createClass({
 
     initListLayout() {
         const props = this.props;
-
+        
         listAreaWidth = props.style.width;
 
         itemWidth = this.getItemWidth(props.itemHeigh, props.aspectRatio)+props.padding;
         itemHeight = props.itemHeigh + props.padding;
         limitRows = this.getLimit(listAreaWidth, itemWidth);
         limitCols = this.getLimit(this.props.style.height, itemHeight);
-
     },
 
     isListEnd(index) {
@@ -67,6 +66,7 @@ const caphList = React.createClass({
     },
 
     moveList(index, item, keyCode) {
+        this.initListLayout();
         const props = this.props;
 
         var currentList = ReactDOM.findDOMNode(this);
@@ -206,7 +206,6 @@ const caphList = React.createClass({
 
     render() {
         const props = this.props;
-
         this.initListLayout();
 
         const listChildren = React.Children.map(this.props.children, (currentChild, index)=>{
@@ -226,6 +225,7 @@ const caphList = React.createClass({
             
             return React.cloneElement(currentChild, 
                 {   scrollList: this.moveList,
+                    scrollArea: this.props.scrollArea,
                     className: 'list-items',
                     index: index,
                     style:Object.assign({}, currentChild.props.style, positionStyle) 
