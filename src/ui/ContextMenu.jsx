@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const caphInput = React.createClass({
+const ContextMenu = React.createClass({
 
     propTypes: {
 
@@ -13,4 +13,4 @@ const caphInput = React.createClass({
     }
 });
 
-export default caphInput;
+export default ContextMenu;

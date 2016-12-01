@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 var itemWidth,itemHeight, limitRows, limitCols, listAreaWidth, listLength;
 
-const caphList = React.createClass({
+const List = React.createClass({
 
     propTypes: {
 
@@ -242,4 +242,4 @@ const caphList = React.createClass({
     }
 });
 
-export default caphList;
+export default List;

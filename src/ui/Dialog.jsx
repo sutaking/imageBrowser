@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const caphRadioButton = React.createClass({
+const Dialog = React.createClass({
 
     propTypes: {
 
@@ -13,4 +13,4 @@ const caphRadioButton = React.createClass({
     }
 });
 
-export default caphRadioButton;
+export default Dialog;

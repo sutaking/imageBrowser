@@ -1,8 +1,8 @@
 import React from 'react';
 
-//import CaphList from '../src/ui/caphList';
-import { CaphList } from 'CaphReact';
-import CaphListItem from '../src/ui/caphListItem';
+//import { List } from 'React';
+import List from '../src/ui/List';
+import ListItem from '../src/ui/ListItem';
 
 
 const getStyles = () => {
@@ -77,16 +77,14 @@ var listDemo = React.createClass({
 
         for(var i=0; i<_num; ++i) {
             items.push(
-                < CaphListItem 
+                < ListItem 
                 key={i}
                 focusable = {setInit(i)}
                 onSelected = {onSelected}
                 onFocused = {onFocused}
                 onBlurred = {onBlurred}
-                style={getItemStyle(i+4*_index)}>
-                    <div>GGGGGG</div>
-                    <div>OOOOOO</div>
-                </CaphListItem>
+                style={getItemStyle(i+4*_index)}>{i}
+                </ListItem>
                 );
                 //onBoxFocus={_handleBoxFocus}
                 //listAreaIndex={_index}
@@ -110,8 +108,7 @@ var listDemo = React.createClass({
                 {listArray.map(function(data, i) {
                     return <div key={i}>
                         <div className={'list-title'}>{data.title+i}</div>
-
-                        <CaphList 
+                        <List 
                             itemHeigh={250}
                             aspectRatio={0}
                             padding={20}
@@ -119,7 +116,7 @@ var listDemo = React.createClass({
                             style={styles.listArea}
                         >
                             {_setItems(i, data.num)}
-                        </CaphList>
+                        </List>
 
                     </div>;
                 })}

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const caphButton = React.createClass({
+const DropDownList = React.createClass({
 
     propTypes: {
 
@@ -13,4 +13,4 @@ const caphButton = React.createClass({
     }
 });
 
-export default caphButton;
+export default DropDownList;

@@ -9,7 +9,7 @@ module.exports = {
   entry: './src/index',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'caph-react.min.js',
+    filename: 'caph-react.js',
     publicPath: '/'
   },
   /*output: {

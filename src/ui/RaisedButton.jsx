@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const caphVideoPlayer = React.createClass({
+const Buttons = React.createClass({
 
     propTypes: {
 
@@ -13,4 +13,4 @@ const caphVideoPlayer = React.createClass({
     }
 });
 
-export default caphVideoPlayer;
+export default Buttons;

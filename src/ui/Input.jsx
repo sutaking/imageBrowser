@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const caphCheckBox = React.createClass({
+const Input = React.createClass({
 
     propTypes: {
 
@@ -13,4 +13,4 @@ const caphCheckBox = React.createClass({
     }
 });
 
-export default caphCheckBox;
+export default Input;

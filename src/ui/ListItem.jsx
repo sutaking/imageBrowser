@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Focusable from '../focus/focusable';
 
-const CaphListItem = React.createClass({
+const ListItem = React.createClass({
     mixins: [Focusable.activation],
 
     propTypes: {
@@ -60,4 +60,4 @@ const CaphListItem = React.createClass({
     }
 });
 
-export default CaphListItem;
+export default ListItem;

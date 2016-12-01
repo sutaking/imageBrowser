@@ -1,21 +1,21 @@
-import CaphList from './ui/caphList';
-import CaphListItem from './ui/caphListItem';
-import CaphButton from './ui/caphButton';
-import CaphCheckBox from './ui/caphCheckBox';
-import CaphContextMenu from './ui/caphContextMenu';
-import CaphDialog from './ui/caphDialog';
-import CaphDropDownList from './ui/caphDropDownList';
-import CaphInput from './ui/caphInput';
-import CaphRadioButton from './ui/caphRadioButton';
+import List from './ui/List';
+import ListItem from './ui/ListItem';
+/*import Button from './ui/Button';
+import CheckBox from './ui/CheckBox';
+import ContextMenu from './ui/ContextMenu';
+import Dialog from './ui/Dialog';
+import DropDownList from './ui/DropDownList';
+import Input from './ui/Input';
+import RadioButton from './ui/RadioButton';*/
 
 module.exports = {
-    CaphList,
-    CaphListItem,
-    CaphButton,
-    CaphCheckBox,
-    CaphContextMenu,
-    CaphDialog,
-    CaphDropDownList,
-    CaphInput,
-    CaphRadioButton
+    List,
+    ListItem,
+    //Button,
+    //CheckBox,
+    //ContextMenu,
+    //Dialog,
+    //DropDownList,
+    //Input,
+    //RadioButton
 };

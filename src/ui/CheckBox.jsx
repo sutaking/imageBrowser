@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const caphDropDownList = React.createClass({
+const CheckBox = React.createClass({
 
     propTypes: {
 
@@ -13,4 +13,4 @@ const caphDropDownList = React.createClass({
     }
 });
 
-export default caphDropDownList;
+export default CheckBox;
